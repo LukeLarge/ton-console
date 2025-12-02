@@ -3,6 +3,9 @@ name: Manual Security Scan
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   quick-scan:
     runs-on: ubuntu-latest
