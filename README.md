@@ -38,3 +38,20 @@ Runs lint for staged files and checks typescript typings
 2. `npm ci`
 3. `npm run build`
 
+## Security Scanning
+
+### Manual Workflow (workflow_dispatch only)
+A manual-only GitHub Actions workflow is available at `.github/workflows/security-scan.yml`. This workflow:
+- Runs only on manual dispatch (workflow_dispatch) - never on push or PR
+- Scans for suspicious patterns (CI downloads, eval/exec usage, base64/obfuscation)
+- Lists recent commits (30 days)
+- Uploads artifacts for review
+
+To run: Go to Actions → "security-scan" → "Run workflow"
+
+### Local Helper Script
+Use `scan-repo.sh` to run security scans locally on a mirror or working clone:
+```bash
+./scan-repo.sh /path/to/repo [output-dir]
+```
+
