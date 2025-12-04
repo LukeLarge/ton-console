@@ -75,6 +75,9 @@ export class BalancesStore {
         );
 
         return {
+            // TODO: PRICES remove this after backend will be updated
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             balances: [new TonCurrencyAmount(response.data.balance.balance)],
             refills: response.data.history.map(mapDTODepositToRefill)
         };
@@ -125,7 +128,7 @@ export class BalancesStore {
 function mapDTODepositToRefill(dtoDeposit: DTODeposit): Refill {
     const commonFields = {
         id: new Date(dtoDeposit.income_date).getTime(),
-        date: new Date(dtoDeposit.income_date),
+        date: new Date(dtoDeposit.income_date * 1000),
         amount: new TonCurrencyAmount(dtoDeposit.amount)
     };
 
